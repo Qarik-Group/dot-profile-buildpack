@@ -1,0 +1,13 @@
+---
+language: profiled
+default_versions: []
+dependency_deprecation_dates: []
+
+include_files:
+  - README.md
+  - VERSION
+  - bin/detect
+  - bin/supply
+  - manifest.yml
+
+dependencies: []

@@ -1,0 +1,13 @@
+#!/bin/bash
+# This script provides dependencies for an app
+
+set -euo pipefail
+
+export BUILD_DIR=$1
+export CACHE_DIR=$2
+export DEPS_DIR=$3
+export DEPS_IDX=$4
+
+export BUILDPACK_DIR=`dirname $(readlink -f ${BASH_SOURCE%/*})`
+
+echo "-----> Java ProfileD Buildpack version $(cat $BUILDPACK_DIR/VERSION)"
