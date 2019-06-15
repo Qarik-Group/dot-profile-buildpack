@@ -11,3 +11,9 @@ export DEPS_IDX=$4
 export BUILDPACK_DIR=`dirname $(readlink -f ${BASH_SOURCE%/*})`
 
 echo "-----> Java ProfileD Buildpack version $(cat $BUILDPACK_DIR/VERSION)"
+if [[ "${PROFILED:-X}" == "X" ]]; then
+  echo "       No \$PROFILED found. Skipping."
+else
+  echo "       Creating .profile"
+  echo "$PROFILED" > $BUILD_DIR/.profile
+fi

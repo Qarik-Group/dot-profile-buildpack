@@ -24,6 +24,10 @@ var _ = Describe("Java app Integration Test", func() {
 		app.Path = filepath.Join(filepath.Join(bpDir, "fixtures", "javaapp", "build/libs/java-main-application-1.0.0.jar"))
 		app.Memory = "512M"
 		app.SetEnv("JAVA_OPTS", "-Xss349k")
+		app.SetEnv("PROFILED", `#!/bin bash
+
+touch file-created-by-profiled
+		`)
 		PushAppAndConfirm(app)
 		Expect(app.GetBody("/")).To(ContainSubstring("Found created file file-created-by-profiled"))
 	})
