@@ -11,7 +11,10 @@ In the following example we set the `$PROFILED` environment variable to a Bash s
 The example script (between the two `SHELL` bookends) will create a `config.json` file.
 
 ```plain
-cf push javaapp -b profiled_buildpack -b java_buildpack --path build/jibs/myapp-1.0.0.jar --no-start
+cf push javaapp --path build/jibs/myapp-1.0.0.jar \
+  -b https://github.com/starkandwayne/dot-profile-buildpack \
+  -b java_buildpack \
+  --no-start
 cf set-env javaapp PROFILED "$(cat <<SHELL
 #!/bin/bash
 
