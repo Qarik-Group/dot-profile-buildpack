@@ -25,6 +25,6 @@ var _ = Describe("Java app Integration Test", func() {
 		app.Memory = "512M"
 		app.SetEnv("JAVA_OPTS", "-Xss349k")
 		PushAppAndConfirm(app)
-		Expect(app.GetBody("/")).To(ContainSubstring("Found created file"))
+		Expect(app.GetBody("/")).To(ContainSubstring("Found created file file-created-by-profiled"))
 	})
 })
