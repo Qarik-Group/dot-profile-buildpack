@@ -1,10 +1,14 @@
 # .profile Buildpack
 
-All Cloud Foundry applications can include a `.profile` file which is run in each application container prior to the application commencing. This allows you to create new configuration files, migrate databases, and more. All applications except Java and Binary buildpack applications because you are only uploading the `.jar` or binary, respectively, so the `.profile` file is not uploaded.
+You can configure `cf push` to run custom initialization tasks (also known as "pre-runtime hooks") for an app [using a `.profile` file](https://docs.cloudfoundry.org/devguide/deploy-apps/deploy-app.html#profile). This allows you to create new configuration files, migrate databases, and more. All applications, except Java and Binary buildpack applications because you are only uploading the `.jar` or binary, respectively, so the `.profile` file is not uploaded.
 
 This buildpack provides a workaround. If you set the `PROFILED` environment variable, this buildpack will create a `.profile` file in each application container for you.
 
 ## Usage
+
+In the following example we set the `$PROFILED` environment variable to a Bash shell script. This script will be run within each application container during start up.
+
+The example script (between the two `SHELL` bookends) will create a `config.json` file.
 
 ```plain
 cf push javaapp -b profiled_buildpack -b java_buildpack --path build/jibs/myapp-1.0.0.jar --no-start
