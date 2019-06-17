@@ -1,6 +1,6 @@
 # .profile Buildpack
 
-You can configure `cf push` to run custom initialization tasks (also known as "pre-runtime hooks") for an app [using a `.profile` file](https://docs.cloudfoundry.org/devguide/deploy-apps/deploy-app.html#profile). This allows you to create new configuration files, migrate databases, and more. All applications, except Java and Binary buildpack applications because you are only uploading the `.jar` or binary, respectively, so the `.profile` file is not uploaded.
+You can configure `cf push` to run custom initialization tasks (also known as "pre-runtime hooks") for an app [using a `.profile` file](https://docs.cloudfoundry.org/devguide/deploy-apps/deploy-app.html#profile). This allows you to create new configuration files, migrate databases, and more. Except Java buildpack applications because you are only uploading the `.jar`, so an additional `.profile` file cannot be uploaded.
 
 This buildpack provides a workaround. If you set the `PROFILED` environment variable, this buildpack will create a `.profile` file in each application container for you.
 
@@ -31,7 +31,7 @@ cf start javaapp
 During staging you will see the `profiled_buildpack` kick in and create the `.profile` within your application:
 
 ```plain
-   -----> Java ProfileD Buildpack version 0.1.0.20190615140303
+   -----> ProfileD Buildpack version 0.1.0.20190615140303
           Creating .profile
 ```
 
